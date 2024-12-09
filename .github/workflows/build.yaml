@@ -37,11 +37,8 @@ jobs:
       with:
         name: artifacts
         path: target/*.jar
-    - name: Verify artifact existence
-      run: |
-        if [ ! -f target/*.jar ]; then
-          echo "No .jar artifact found!" && exit 1
-        fi
+    - name: List artifacts before deployment
+      run: ls -l target/*.jar
 
   deploy:
     needs: build
@@ -56,8 +53,6 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
-    - name: List artifacts before deployment
-      run: ls -l target/*.jar
     - name: Download artifact with commit hash
       uses: actions/download-artifact@v3
       with:
