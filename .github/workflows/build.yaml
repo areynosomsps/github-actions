@@ -37,6 +37,12 @@ jobs:
       with:
         name: artifacts
         path: target/*.jar
+    - name: Verify artifact existence
+      run: |
+        if [ ! -f target/*.jar ]; then
+          echo "No .jar artifact found!" && exit 1
+        fi
+
 
   deploy:
     needs: build
