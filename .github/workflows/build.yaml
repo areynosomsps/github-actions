@@ -44,8 +44,6 @@ jobs:
     steps:    
     - name: Checkout this repo
       uses: actions/checkout@v3
-    - name: List downloaded artifacts
-      run: ls -l target/*.jar
     - name: Cache dependencies
       uses: actions/cache@v3
       with:
@@ -58,6 +56,8 @@ jobs:
       with:
         name: artifacts
         path: target/
+    - name: List downloaded artifacts
+      run: ls -l target/*.jar
     - name: Deploy to Sandbox
       env:
         ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
