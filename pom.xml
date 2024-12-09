@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.mycompany</groupId>
@@ -18,7 +20,6 @@
 		<app.name>github-actions</app.name>
 		<env>Sandbox</env>
 	</properties>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -47,7 +48,7 @@
 						<!-- End: CONNECTED APP -->
 						<applicationName>${app.name}</applicationName>
 						<replicas>1</replicas>
-      					<vCores>1</vCores>
+						<vCores>1</vCores>
 					</cloudhub2Deployment>
 					<classifier>mule-application</classifier>
 				</configuration>
@@ -96,5 +97,11 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-
+	<distributionManagement>
+		<repository>
+			<id>anypoint-exchange</id>
+			<name>Anypoint Exchange</name>
+			<url>https://maven.anypoint.mulesoft.com/api/v3/organizations/ea6a70ba-3852-4d98-b29b-9643e0c3534d/maven/</url>
+		</repository>
+	</distributionManagement>
 </project>
