@@ -43,7 +43,6 @@ jobs:
           echo "No .jar artifact found!" && exit 1
         fi
 
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -57,9 +56,13 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
-    - uses: actions/download-artifact@v3
+    - name: List artifacts before deployment
+      run: ls -l target/*.jar
+    - name: Download artifact with commit hash
+      uses: actions/download-artifact@v3
       with:
         name: artifacts
+        path: target/
     - name: Deploy to Sandbox
       env:
         ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
