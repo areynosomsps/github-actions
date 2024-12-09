@@ -44,6 +44,8 @@ jobs:
     steps:    
     - name: Checkout this repo
       uses: actions/checkout@v3
+    - name: List downloaded artifacts
+      run: ls -l target/*.jar
     - name: Cache dependencies
       uses: actions/cache@v3
       with:
@@ -51,9 +53,11 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
-    - uses: actions/download-artifact@v3
+    - name: Download artifact
+      uses: actions/download-artifact@v3
       with:
         name: artifacts
+        path: target/
     - name: Deploy to Sandbox
       env:
         ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
