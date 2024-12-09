@@ -1,4 +1,4 @@
-name: Deploy
+name: Publish to Exchange & Deploy to CH2.0
 
 on:
   push:
@@ -6,41 +6,39 @@ on:
   pull_request:
     branches: [ main ]
 
-jobs:
-  build:
+jobs:         
+  build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout this repo
-      uses: actions/checkout@v4
+      - name: Checkout this repo
+        uses: actions/checkout@v4
 
-    - name: Cache dependencies
-      uses: actions/cache@v4
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
 
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'zulu'
-        java-version: 8
-        
-    - name: Publish to Exchange
-      env:
-        ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
-        SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
-      run: |
-        mvn deploy --settings .maven/settings.xml -DskipMunitTests \
-        -Dclient.id="$ID" \
-        -Dclient.secret="$SECRET"
-
-    - name: Deploy to CloudHub 2.0
-      env:
-        ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
-        SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
-      run: |
-        mvn deploy --settings .maven/settings.xml -DskipMunitTests -DmuleDeploy \
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v4
+        with:
+          distribution: "zulu"
+          java-version: 8
+      - name: Publish to Exchange
+        env:
+          ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
+          SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
+        run: |
+          mvn deploy --settings .maven/settings.xml -DskipMunitTests \
           -Dclient.id="$ID" \
           -Dclient.secret="$SECRET"
+
+      - name: Deploy to CloudHub 2.0
+        env:
+          ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
+          SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
+        run: |
+          mvn deploy --settings .maven/settings.xml -DskipMunitTests -DmuleDeploy \
+            -Dclient.id="$ID" \
+            -Dclient.secret="$SECRET"
