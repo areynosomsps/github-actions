@@ -30,7 +30,7 @@ jobs:
           ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
           SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
         run: |
-          mvn deploy --settings .maven/settings.xml -DskipMunitTests \
+          mvn deploy --settings .maven/settings.xml -DskipMunitTests -X\
           -Dclient.id="$ID" \
           -Dclient.secret="$SECRET"
 
@@ -39,6 +39,6 @@ jobs:
           ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
           SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
         run: |
-          mvn deploy --settings .maven/settings.xml -DskipMunitTests -DmuleDeploy \
+          mvn deploy --settings .maven/settings.xml -DskipMunitTests -DmuleDeploy -X\
             -Dclient.id="$ID" \
             -Dclient.secret="$SECRET"
