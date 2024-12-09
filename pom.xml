@@ -38,7 +38,7 @@
 						<uri>https://anypoint.mulesoft.com</uri>
 						<provider>MC</provider>
 						<target>Cloudhub-US-East-2</target>
-						<server>${serverId}</server>
+						<server>Repository</server>
 						<environment>${env}</environment>
 						<applicationName>${app.name}</applicationName>
 						<releaseChannel>NONE</releaseChannel>
@@ -82,7 +82,7 @@
 			<layout>default</layout>
 		</repository>
 		<repository>
-			<id>${serverId}</id>
+			<id>Repository</id>
 			<name>Corporate Repository</name>
 			<url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
 			<layout>default</layout>
@@ -101,7 +101,7 @@
 	</pluginRepositories>
 	<distributionManagement>
 		<repository>
-			<id>${serverId}</id>
+			<id>Repository</id>
 			<name>Corporate Repository</name>
 			<url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
 			<layout>default</layout>
