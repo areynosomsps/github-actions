@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.mycompany</groupId>
+	<groupId>ea6a70ba-3852-4d98-b29b-9643e0c3534d</groupId>
 	<artifactId>github-actions</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
@@ -97,11 +97,12 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-	<distributionManagement>
-		<repository>
-			<id>anypoint-exchange</id>
-			<name>Anypoint Exchange</name>
-			<url>https://maven.anypoint.mulesoft.com/api/v3/organizations/ea6a70ba-3852-4d98-b29b-9643e0c3534d/maven/</url>
-		</repository>
-	</distributionManagement>
+	  <distributionManagement>
+    <repository>
+      <id>Repository</id>
+      <name>Corporate Repository</name>
+      <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/ea6a70ba-3852-4d98-b29b-9643e0c3534d/maven</url>
+      <layout>default</layout>
+    </repository>
+  </distributionManagement>
 </project>
