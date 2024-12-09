@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.mycompany</groupId>
+	<groupId>ea6a70ba-3852-4d98-b29b-9643e0c3534d</groupId>
 	<artifactId>github-actions</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>mule-application</packaging>
 
 	<name>github-actions</name>
@@ -35,19 +35,14 @@
 					<cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>${app.runtime}</muleVersion>
-						<!-- <username>${anypoint.username}</username>
-						<password>${anypoint.password}</password> -->
-						<!-- Start: CONNECTED APP -->
 						<connectedAppClientId>${client.id}</connectedAppClientId>
 						<connectedAppClientSecret>${client.secret}</connectedAppClientSecret>
 						<connectedAppGrantType>client_credentials</connectedAppGrantType>
-						<!-- End: CONNECTED APP -->
 						<applicationName>${app.name}</applicationName>
 						<environment>${env}</environment>
 						<workerType>MICRO</workerType>
 						<region>us-east-2</region>
 						<workers>1</workers>
-						<objectStoreV2>true</objectStoreV2>
 					</cloudHubDeployment>
 					<classifier>mule-application</classifier>
 				</configuration>
