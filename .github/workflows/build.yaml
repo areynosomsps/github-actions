@@ -63,7 +63,7 @@ jobs:
         ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
         SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
       run: |
-        artifactName=$(ls *.jar | head -1)
+        artifactName=$(ls target/*.jar | head -1)
         mvn deploy -DmuleDeploy \
          -Dmule.artifact=$artifactName \
          -Dclient.id="$ID" \
